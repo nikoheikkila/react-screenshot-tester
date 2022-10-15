@@ -61,6 +61,9 @@ function App() {
                 <h1>React Screenshot Tester</h1>
                 <p>Click the button below to save the graph as an image file to disk.</p>
                 <p>The image will be saved into your browser's configured download directory.</p>
+                <p>
+                    See the source code at <a href="https://github.com/nikoheikkila/react-screenshot-tester" target="blank">GitHub</a>.
+                </p>
             </header>
 
             <section className="controls">
