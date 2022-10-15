@@ -104,6 +104,7 @@ interface ChartProps {
 const ChartContainer: React.FC<ChartProps> = ({captureRef}) => {
     return (
         <section ref={captureRef}>
+            <h2>Example Chart</h2>
             <VictoryChart theme={VictoryTheme.material} width={1920} height={1080}>
                 <VictoryLine data={data}/>
             </VictoryChart>
