@@ -1,9 +1,9 @@
 import "./App.css";
 
-import range from "lodash/range";
-import {VictoryChart, VictoryLine, VictoryTheme} from "victory";
-import React, {useRef, useState} from "react";
 import html2canvas from "html2canvas";
+import range from "lodash/range";
+import React, { useRef, useState } from "react";
+import { VictoryChart, VictoryLine, VictoryTheme } from "victory";
 
 const data = range(1, 100).map((x) => ({
     x,
@@ -80,7 +80,7 @@ function App() {
                     max={1.0}
                     step={0.1}
                     value={quality}
-                    onInput={(event: React.FormEvent<HTMLInputElement>) => setQuality(Number(event.target.value))}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => setQuality(Number(event.target.value))}
                 />
                 <label htmlFor="quality">Quality {quality * 100} %</label>
             </section>
