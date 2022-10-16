@@ -9,6 +9,6 @@ const CaptureButton: React.FC<CaptureButtonProps> = ({ onClick, className }) => 
             Save to Disk
         </button>
     );
-}
+};
 
 export default CaptureButton;

@@ -20,6 +20,6 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
             </p>
         </header>
     );
-}
+};
 
 export default Header;

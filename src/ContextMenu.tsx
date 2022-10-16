@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from 'react';
 
 interface ContextMenuProps {
     children: ReactNode | ReactNode[];
@@ -12,7 +12,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ className, children }) => {
 
     const handleClick = (event: MouseEvent) => {
         if (show) setShow(false);
-    }
+    };
 
     const handleContextMenu = (event: MouseEvent) => {
         event.preventDefault();
@@ -21,7 +21,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ className, children }) => {
         setX(`${pageX}px`);
         setY(`${pageY}px`);
         setShow(true);
-    }
+    };
 
     useEffect(() => {
         document.addEventListener('click', handleClick);
@@ -30,20 +30,23 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ className, children }) => {
         return () => {
             document.removeEventListener('click', handleClick);
             document.removeEventListener('contextmenu', handleContextMenu);
-        }
-    })
+        };
+    });
 
     if (!show) return null;
 
     return (
-        <ul className={className} style={{
-            position: 'absolute',
-            top: y,
-            left: x
-        }}>
+        <ul
+            className={className}
+            style={{
+                position: 'absolute',
+                top: y,
+                left: x,
+            }}
+        >
             {children}
         </ul>
-    )
+    );
 };
 
 export default ContextMenu;
