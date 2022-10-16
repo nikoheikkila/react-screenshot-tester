@@ -1,4 +1,5 @@
 import range from 'lodash/range';
+import { memo } from 'react';
 import { VictoryChart, VictoryLegend, VictoryLine, VictoryTheme } from 'victory';
 
 interface ChartProps {
@@ -11,6 +12,7 @@ const chartData = range(1, 1000, Math.random() * 10).map((x) => ({
 }));
 
 const ChartContainer: React.FC<ChartProps> = ({ captureRef }) => {
+
     return (
         <section ref={captureRef}>
             <h2>Example Chart</h2>
@@ -38,4 +40,4 @@ const ChartContainer: React.FC<ChartProps> = ({ captureRef }) => {
     );
 };
 
-export default ChartContainer;
+export default memo(ChartContainer);

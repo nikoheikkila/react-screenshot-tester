@@ -1,9 +1,16 @@
 import html2canvas from 'html2canvas';
+import { ImageFormat } from '../types';
 
 interface DownloadOptions {
     readonly format: string;
     readonly quality: number;
 }
+
+export const formats = [
+    { label: 'PNG', value: ImageFormat.PNG },
+    { label: 'JPEG', value: ImageFormat.JPEG },
+    { label: 'WebP', value: ImageFormat.WEBP },
+];
 
 export const takeScreenshot = async (target: HTMLElement | null, options: DownloadOptions): Promise<void> => {
     const { format, quality } = options;
