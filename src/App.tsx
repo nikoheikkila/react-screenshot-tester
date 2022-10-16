@@ -1,19 +1,16 @@
 import './App.css';
 
-import range from 'lodash/range';
 import React, { useRef, useState } from 'react';
-import { VictoryChart, VictoryLine, VictoryTheme } from 'victory';
+import ChartContainer from './ChartContainer';
+import ContextMenu from './ContextMenu';
 import { takeScreenshot } from './screenshot';
 import { ImageFormat } from './types';
 
-interface ChartProps {
-    captureRef: React.RefObject<HTMLDivElement>;
-}
-
-const chartData = range(1, 100).map((x) => ({
-    x,
-    y: Math.random(),
-}));
+const formats = [
+    { label: 'PNG', value: ImageFormat.PNG },
+    { label: 'JPEG', value: ImageFormat.JPEG },
+    { label: 'WebP', value: ImageFormat.WEBP },
+];
 
 function App() {
     const [format, setFormat] = useState<string>(ImageFormat.PNG);
@@ -23,10 +20,26 @@ function App() {
 
     return (
         <main>
-            <header>
+            <ContextMenu className="context-menu">
+                {formats.map((format) => (
+                    <li key={format.value}>
+                        <a
+                            href="#"
+                            onClick={() => takeScreenshot(captureRef.current, { format: format.value, quality })}
+                        >
+                            Export to {format.label}
+                        </a>
+                    </li>
+                ))}
+            </ContextMenu>
+
+            <header className='header'>
                 <h1>React Screenshot Tester</h1>
-                <p>Click the button below to save the graph as an image file to disk.</p>
-                <p>The image will be saved into your browser's configured download directory.</p>
+                <p>
+                    Click the button below to save the graph as an image file to disk. Alternatively, right-click on any
+                    part of this web page to open a context menu. The image will be saved into your browser's configured
+                    download directory.
+                </p>
                 <p>
                     See the source code at{' '}
                     <a href="https://github.com/nikoheikkila/react-screenshot-tester" target="blank">
@@ -41,9 +54,11 @@ function App() {
 
                 <label htmlFor="format">Format</label>
                 <select id="format" className="format-picker" onChange={(event) => setFormat(event.target.value)}>
-                    <option value={ImageFormat.PNG}>PNG</option>
-                    <option value={ImageFormat.JPEG}>JPEG</option>
-                    <option value={ImageFormat.WEBP}>WebP</option>
+                    {formats.map((format) => (
+                        <option value={format.value} key={format.value}>
+                            {format.label}
+                        </option>
+                    ))}
                 </select>
 
                 <input
@@ -67,16 +82,5 @@ function App() {
         </main>
     );
 }
-
-const ChartContainer: React.FC<ChartProps> = ({ captureRef }) => {
-    return (
-        <section ref={captureRef}>
-            <h2>Example Chart</h2>
-            <VictoryChart theme={VictoryTheme.material} width={window.innerWidth} height={window.innerHeight}>
-                <VictoryLine data={chartData} />
-            </VictoryChart>
-        </section>
-    );
-};
 
 export default App;

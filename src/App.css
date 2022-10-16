@@ -5,6 +5,24 @@
   text-align: center;
 }
 
+.header {
+    max-width: 50vw;
+    margin: 0 auto;
+}
+
+.context-menu {
+    background-color: #f0f0f0;
+    color: #222;
+    padding: 0;
+    z-index: 999;
+}
+
+.context-menu li {
+    list-style-type: none;
+    text-align: left;
+    padding: 10px 15px;
+}
+
 .capture-button {
     margin: 50px auto;
 }

@@ -9,10 +9,16 @@ export const takeScreenshot = async (target: HTMLElement | null, options: Downlo
     const { format, quality } = options;
     const downloadLink = document.createElement('a');
 
-    downloadLink.href = await createImage(target, format, quality);
-    downloadLink.download = createFileName('capture', new Date().toISOString(), parseExtension(format));
-    downloadLink.click();
-    downloadLink.remove();
+    try {
+        downloadLink.href = await createImage(target, format, quality);
+        downloadLink.download = createFileName('capture', new Date().toISOString(), parseExtension(format));
+        downloadLink.click();
+    } catch (error) {
+        console.error(error);
+        Promise.reject(error);
+    } finally {
+        downloadLink.remove();
+    }
 };
 
 const parseExtension = (mimeType: string): string => {
