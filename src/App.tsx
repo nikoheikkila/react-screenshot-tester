@@ -28,7 +28,7 @@ function App() {
     ));
 
     return (
-        <main>
+        <main role="main">
             <ContextMenu className="context-menu">{dropDownMenu}</ContextMenu>
             <Header className="header" />
             <section className="controls">
